@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicativo</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navbar Horizontal -->
+    <nav class="navbar navbar-expand-lg navbar-light custom-navbar fixed-top">
+        <a class="navbar-brand" href="/index.html">App Ticket</a>
+        <div class="navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="tickets.html">Criar um ticket</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="historico.html">Histórico <span class="sr-only">(atual)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/sobre.html">Sobre</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Conteúdo da Página -->
+    <div class="container custom-container">
+        <h1>Histórico de Tickets</h1>
+        <p>Visualize o histórico de tickets.</p>
+
+        <!-- Seção de Histórico de Tickets -->
+        <div class="tickets-section">
+            <h2>Tickets Recentes</h2>
+            <div class="row">
+                <!-- Exemplo de Cartão de Ticket -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Título do Ticket</h5>
+                            <p class="card-text">Descrição breve do ticket.</p>
+                            <span class="label-status status-em-andamento">Em Andamento</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Adicione mais cartões conforme necessário -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Script do Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
