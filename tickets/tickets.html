@@ -33,19 +33,11 @@
         <form>
             <div class="form-group">
                 <label for="tituloTicket">Título do Ticket</label>
-                <input type="text" class="form-control" id="tituloTicket" placeholder="Digite o título do ticket">
+                <input type="text" class="form-control" id="tituloTicket" placeholder="Digite o título do ticket" required>
             </div>
             <div class="form-group">
                 <label for="descricaoTicket">Descrição</label>
-                <textarea class="form-control" id="descricaoTicket" rows="5" placeholder="Descreva o problema"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="prioridadeTicket">Prioridade</label>
-                <select class="form-control" id="prioridadeTicket">
-                    <option>Baixa</option>
-                    <option>Média</option>
-                    <option>Alta</option>
-                </select>
+                <textarea class="form-control" id="descricaoTicket" rows="5" placeholder="Descreva o problema" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Criar Ticket</button>
         </form>
@@ -55,5 +47,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Referência ao arquivo JavaScript -->
+    <script src="ticket.js"></script>
 </body>
 </html>
+
