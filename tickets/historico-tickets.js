@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const ticketList = document.getElementById("ticketList");
 
-    // Recupera os tickets do localStorage
+    
     const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
 
     if (tickets.length === 0) {
