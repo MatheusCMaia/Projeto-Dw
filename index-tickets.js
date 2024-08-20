@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const ticketList = document.getElementById('ticketList');
 
-    // Função para criar o HTML de um card de ticket
+    
     function createTicketCard(ticket) {
         return `
             <div class="col-md-4">
@@ -18,13 +18,13 @@ document.addEventListener("DOMContentLoaded", function() {
         `;
     }
 
-    // Recupera os tickets do localStorage
+    
     const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
 
-    // Filtra apenas os tickets pendentes
+    
     const ticketsPendentes = tickets.filter(ticket => ticket.status === 'Pendente');
 
-    // Adiciona os tickets pendentes à lista
+    
     if (ticketsPendentes.length > 0) {
         ticketList.innerHTML = ticketsPendentes.map(createTicketCard).join('');
     } else {
