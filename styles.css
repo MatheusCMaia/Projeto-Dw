@@ -60,34 +60,43 @@
     text-align: center; /* Centraliza o h2 para manter a consistência */
 }
 
-/* Estilização dos Cartões de Tickets */
+/* Estilização personalizada para os cards na página inicial */
 .card {
     border: none;
     border-radius: 8px;
     transition: transform 0.3s ease;
-    max-width: 300px; /* Define uma largura máxima para os cartões */
-    margin: auto; /* Centraliza os cartões na coluna */
-}
-
-.card:hover {
-    transform: translateY(-5px);
+    margin-bottom: 20px; /* Adiciona espaçamento entre as linhas de cards */
 }
 
 .card-body {
-    padding: 15px; /* Reduz o padding dentro do cartão */
+    padding: 15px;
 }
 
 .card-title {
-    font-size: 1.125rem; /* Reduz o tamanho da fonte do título */
+    font-size: 1.125rem;
     font-weight: 600;
     color: #343a40;
 }
 
 .card-text {
-    font-size: 0.875rem; /* Ajusta o tamanho da fonte do texto */
+    font-size: 0.875rem;
     color: #6c757d;
     margin-bottom: 10px;
 }
+
+.badge-warning {
+    background-color: #ffc107; /* Cor de fundo para status "Pendente" */
+}
+
+.badge-secondary {
+    background-color: #6c757d; /* Cor de fundo para outros status */
+}
+
+/* Ajusta a largura dos cards */
+.card {
+    width: 100%; /* Garante que o card ocupe toda a largura da coluna */
+}
+
 
 .text-muted {
     font-size: 0.75rem; /* Ajusta o tamanho da fonte para informações adicionais */
