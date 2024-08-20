@@ -1,8 +1,8 @@
-/* Navbar Horizontal */
+
 .custom-navbar {
     background-color: #343a40;
-    padding: 0 20px; /* Adiciona padding horizontal */
-    z-index: 1000; /* Garante que a navbar fique acima de outros conteúdos */
+    padding: 0 20px; 
+    z-index: 1000; 
 }
 
 .custom-navbar .navbar-nav .nav-link {
@@ -18,54 +18,54 @@
 }
 
 .navbar-nav {
-    flex-direction: row; /* Exibe os itens da navbar horizontalmente */
+    flex-direction: row; 
 }
 
 .navbar-nav .nav-item {
-    margin-right: 20px; /* Espaçamento entre os itens da navbar */
+    margin-right: 20px; 
 }
 
 .navbar-nav .nav-item:last-child {
-    margin-right: 0; /* Remove o espaçamento no último item */
+    margin-right: 0; 
 }
 
-/* Conteúdo */
+
 .custom-container {
-    padding-top: 100px; /* Ajusta o padding superior para garantir que o conteúdo não fique colado na navbar */
+    padding-top: 100px; 
 }
 
 .custom-container h1 {
-    font-size: 2rem; /* Ajusta o tamanho da fonte para um valor menor e mais elegante */
-    font-weight: 700; /* Torna o texto mais ousado */
-    color: #343a40; /* Mantém a cor escura para boa legibilidade */
-    margin-top: 0; /* Remove a margem superior para alinhar com o padding da seção */
-    margin-bottom: 20px; /* Adiciona um espaçamento abaixo do título */
-    line-height: 1.3; /* Ajusta o espaçamento entre linhas para um visual mais refinado */
-    text-align: center; /* Centraliza o título */
+    font-size: 2rem; 
+    font-weight: 700; 
+    color: #343a40; 
+    margin-top: 0; 
+    margin-bottom: 20px; 
+    line-height: 1.3; 
+    text-align: center; 
 }
 
 .custom-container p {
     font-size: 1rem;
     color: #343a40;
-    text-align: center; /* Centraliza o parágrafo */
-    margin-top: 0; /* Remove a margem superior para alinhar com o h1 */
-    margin-bottom: 20px; /* Espaçamento abaixo do parágrafo */
+    text-align: center; 
+    margin-top: 0; 
+    margin-bottom: 20px; 
 }
 
 .custom-container h2 {
-    font-size: 1.5rem; /* Ajusta o tamanho da fonte do h2 */
+    font-size: 1.5rem; 
     margin-top: 20px;
     margin-bottom: 15px;
     color: #495057;
-    text-align: center; /* Centraliza o h2 para manter a consistência */
+    text-align: center; 
 }
 
-/* Estilização personalizada para os cards na página inicial */
+
 .card {
     border: none;
     border-radius: 8px;
     transition: transform 0.3s ease;
-    margin-bottom: 20px; /* Adiciona espaçamento entre as linhas de cards */
+    margin-bottom: 20px; 
 }
 
 .card-body {
@@ -85,25 +85,25 @@
 }
 
 .badge-warning {
-    background-color: #ffc107; /* Cor de fundo para status "Pendente" */
+    background-color: #ffc107; 
 }
 
 .badge-secondary {
-    background-color: #6c757d; /* Cor de fundo para outros status */
+    background-color: #6c757d; 
 }
 
-/* Ajusta a largura dos cards */
+
 .card {
-    width: 100%; /* Garante que o card ocupe toda a largura da coluna */
+    width: 100%; 
 }
 
 
 .text-muted {
-    font-size: 0.75rem; /* Ajusta o tamanho da fonte para informações adicionais */
+    font-size: 0.75rem; 
     color: #868e96 !important;
 }
 
-/* Estilização para o Aviso de Sem Tickets */
+
 .no-tickets-alert {
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;
@@ -124,43 +124,43 @@
     color: #868e96 !important;
 }
 
-/* Estilização do Formulário */
+
 .form-control {
-    border-radius: 8px; /* Adiciona bordas arredondadas aos campos do formulário */
+    border-radius: 8px; 
 }
 
 .btn-primary {
-    background-color: #007bff; /* Cor principal do botão */
-    border: none; /* Remove a borda padrão */
-    border-radius: 8px; /* Adiciona bordas arredondadas ao botão */
+    background-color: #007bff; 
+    border: none; 
+    border-radius: 8px; 
 }
 
 .btn-primary:hover {
-    background-color: #0056b3; /* Cor do botão ao passar o cursor */
+    background-color: #0056b3; 
 }
 
-/* Estilização dos Labels de Status */
+
 .label-status {
-    font-size: 0.75rem; /* Tamanho da fonte menor e mais elegante */
-    font-weight: 600; /* Deixa o texto mais ousado */
-    padding: 5px 10px; /* Padding interno para espaçamento */
-    border-radius: 5px; /* Bordas arredondadas */
-    display: inline-block; /* Garante que o label se ajuste ao conteúdo */
-    margin-right: 5px; /* Espaço entre labels */
-    margin-bottom: 5px; /* Espaço abaixo dos labels */
+    font-size: 0.75rem; 
+    font-weight: 600; 
+    padding: 5px 10px;
+    border-radius: 5px; 
+    display: inline-block; 
+    margin-right: 5px; 
+    margin-bottom: 5px; 
 }
 
 .status-pendente {
-    background-color: #f0ad4e; /* Cor de fundo para 'Pendente' */
-    color: #ffffff; /* Cor do texto */
+    background-color: #f0ad4e; 
+    color: #ffffff; 
 }
 
 .status-em-andamento {
-    background-color: #5bc0de; /* Cor de fundo para 'Em Andamento' */
-    color: #ffffff; /* Cor do texto */
+    background-color: #5bc0de; 
+    color: #ffffff; 
 }
 
 .status-finalizado {
-    background-color: #5cb85c; /* Cor de fundo para 'Finalizado' */
-    color: #ffffff; /* Cor do texto */
+    background-color: #5cb85c; 
+    color: #ffffff; 
 }
