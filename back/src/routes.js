@@ -12,13 +12,19 @@ class HttpError extends Error {
 const router = express.Router();
 
 router.post('/tickets', (req, res) => {
-  const { titulo, descricao, prioridade, status, dataCriacao } = req.body;
+  const { titulo, descricao } = req.body;
 
-  if (!titulo || !descricao || !prioridade || !status || !dataCriacao) {
+  if (!titulo || !descricao) {
     throw new HttpError('Error when passing parameters');
   }
 
   const id = uuidv4();
+
+  const dataCriacao = new Date().toISOString()
+
+  const status = "Pendente"
+
+  const prioridade = "Em Análise"
 
   const newTicket = { id, titulo, descricao, prioridade, status, dataCriacao };
 
@@ -60,15 +66,15 @@ router.get('/tickets/:id', (req, res) => {
 });
 
 router.put('/tickets/:id', (req, res) => {
-  const { titulo, descricao, prioridade, status, dataCriacao } = req.body;
+  const { titulo, descricao, prioridade, status } = req.body;
 
   const { id } = req.params;
 
-  if (!titulo || !descricao || !prioridade || !status || !dataCriacao) {
+  if (!titulo || !descricao) {
     throw new HttpError('Error when passing parameters');
   }
 
-  const newTicket = { id, titulo, descricao, prioridade, status, dataCriacao };
+  const newTicket = { id, titulo, descricao, prioridade, status };
 
   const index = tickets.findIndex((ticket) => ticket.id === id);
 

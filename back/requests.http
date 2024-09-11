@@ -1,66 +1,51 @@
 @server=http://localhost:3000
-@createdHostId = {{createHost.response.body.$.id}}
+@createdTicketId = {{createTicket.response.body.$.id}}
 
-### Create a host
-# @name createHost
-POST {{server}}/hosts
+### Create a ticket
+# @name createTicket
+POST {{server}}/tickets
 Content-Type: application/json
 
 {
-  "name": "DNS Server",
-  "address": "1.1.1.1"
+  "titulo": "Ticket pendente 1",
+  "descricao": "Descrição do problema 1"
+
 }
 
-### Create a host without name or address
-POST {{server}}/hosts
+### Read ticket
+GET {{server}}/tickets
+
+### Read a ticket by title
+GET {{server}}/tickets?titulo=Problema%202
+# GET {{server}}/tickets?titulo=1
+# GET {{server}}/tickets?name=1
+
+### Read a ticket by id
+GET {{server}}/tickets/{{createdTicketId}}
+
+### Read a ticket by id with invalid id
+GET {{server}}/tickets/x
+
+### Update a ticket
+PUT {{server}}/tickets/{{createdTicketId}}
 Content-Type: application/json
 
 {
-  "name": "DNS Server"
+  "titulo": "Problema 1",
+  "descricao": "Descrição do problema 1 atualizada"
 }
 
-### Read hosts
-GET {{server}}/hosts
-
-### Read a host by name
-GET {{server}}/hosts?name=Google%20DNS
-# GET {{server}}/hosts?name=DNS
-# GET {{server}}/hosts?name=dns
-
-### Read a host by id
-GET {{server}}/hosts/{{createdHostId}}
-
-### Read a host by id with invalid id
-GET {{server}}/hosts/x
-
-### Update a host
-PUT {{server}}/hosts/{{createdHostId}}
+### Update a ticket with invalid id
+PUT {{server}}/tickets/x
 Content-Type: application/json
 
 {
-  "name": "Cloudflare DNS",
-  "address": "1.1.1.1"
+  "titulo": "Problema ID",
+  "descricao": "Teste problema com ID incorreta"
 }
 
-### Update a host without name or address
-PUT {{server}}/hosts/{{createdHostId}}
-Content-Type: application/json
+### Delete a ticket
+DELETE {{server}}/tickets/{{createdTicketId}}
 
-{
-  "name": "Cloudflare DNS"
-}
-
-### Update a host with invalid id
-PUT {{server}}/hosts/x
-Content-Type: application/json
-
-{
-  "name": "Cloudflare DNS",
-  "address": "1.1.1.1"
-}
-
-### Delete a host
-DELETE {{server}}/hosts/{{createdHostId}}
-
-### Delete a host with invalid id
-DELETE {{server}}/hosts/x
+### Delete a ticket with invalid id
+DELETE {{server}}/tickets/x
