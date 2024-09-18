@@ -1,0 +1,51 @@
+@server=http://localhost:3000
+@createdTicketId = {{createTicket.response.body.$.id}}
+
+### Create a ticket
+# @name createTicket
+POST {{server}}/tickets
+Content-Type: application/json
+
+{
+  "titulo": "Ticket pendente 1",
+  "descricao": "Descrição do problema 1"
+
+}
+
+### Read ticket
+GET {{server}}/tickets
+
+### Read a ticket by title
+GET {{server}}/tickets?titulo=Problema%202
+# GET {{server}}/tickets?titulo=1
+# GET {{server}}/tickets?name=1
+
+### Read a ticket by id
+GET {{server}}/tickets/{{createdTicketId}}
+
+### Read a ticket by id with invalid id
+GET {{server}}/tickets/x
+
+### Update a ticket
+PUT {{server}}/tickets/{{createdTicketId}}
+Content-Type: application/json
+
+{
+  "titulo": "Problema 1",
+  "descricao": "Descrição do problema 1 atualizada"
+}
+
+### Update a ticket with invalid id
+PUT {{server}}/tickets/x
+Content-Type: application/json
+
+{
+  "titulo": "Problema ID",
+  "descricao": "Teste problema com ID incorreta"
+}
+
+### Delete a ticket
+DELETE {{server}}/tickets/{{createdTicketId}}
+
+### Delete a ticket with invalid id
+DELETE {{server}}/tickets/x

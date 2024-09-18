@@ -1,4 +1,4 @@
-import { createTicketCard, verificarTamanho } from "./tickets/a.js";
+import { createTicketCard, verificarTamanho } from "./tickets/ticket-card-vtamanho.js";
 
 document.addEventListener("DOMContentLoaded", function() {
     const ticketList = document.getElementById('ticketList');
