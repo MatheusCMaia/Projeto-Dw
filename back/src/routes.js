@@ -1,6 +1,6 @@
 import express from 'express';
 import { v4 as uuidv4 } from 'uuid';
-import { tickets } from './data/tickets.js';
+import { tickets } from './database/tickets.js';
 
 class HttpError extends Error {
   constructor(message, code = 400) {
