@@ -1,0 +1,14 @@
+{
+"tickets": [
+  {
+    "id": "e4cfb6bb-4431-42a9-b660-d5701b2f49cd",
+    "titulo": "Problema 1",
+    "descricao": "Descrição do problema 1"
+  },
+  {
+    "id": "a2bb615a-6153-41bf-8cbe-0bfb538ce511",
+    "titulo": "Problema 2",
+    "descricao": "Descrição do problema 2"
+  }
+]
+}
