@@ -1,5 +1,5 @@
 import express from 'express';
-import { tickets } from './database/tickets.js';
+import Host from './models/Hosts.js';
 
 class HttpError extends Error {
   constructor(message, code = 400) {
