@@ -10,9 +10,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
  
-model Host {
+model Ticket {
   id      String @id @default(uuid())
   titulo    String
   descricao String
+  dataCriacao DateTime @default(())
+}
+
+model User {
+  id       String @id @default(cuid())
+  name     String
+  email    String @unique
+  password String
+  tickets    Ticket[]
 }
  
