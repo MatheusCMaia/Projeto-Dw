@@ -1,5 +1,5 @@
 import express from 'express';
-import Host from './models/Hosts.js';
+import Ticket from './models/Ticket.js';
 
 class HttpError extends Error {
   constructor(message, code = 400) {
@@ -10,83 +10,102 @@ class HttpError extends Error {
 
 const router = express.Router();
 
-router.post('/tickets', (req, res) => {
+// Criação de tickets
+router.post('/tickets', async (req, res) => {
   const { titulo, descricao } = req.body;
 
   if (!titulo || !descricao) {
-    throw new HttpError('Error when passing parameters');
+    throw new HttpError('Error when passing parameters', 400);
   }
 
   try {
-    const createdTicket = await Ticket.create({ titulo, descricao });
- 
+    const createdTicket = await Ticket.create({
+      data: { 
+        titulo, 
+        descricao, 
+        prioridade: 'Em Análise', 
+        status: 'Pendente'
+      }
+    });
+
     return res.status(201).json(createdTicket);
   } catch (error) {
-    throw new HttpError('Unable to create a ticket');
+    return res.status(500).json({ message: 'Unable to create a ticket', error: error.message });
   }
 });
 
+// Leitura de tickets
 router.get('/tickets', async (req, res) => {
   const { titulo } = req.query;
- 
+
   try {
     if (titulo) {
-      const filteredtickets = await Ticket.read({ titulo });
- 
+      const filteredtickets = await Ticket.findMany({
+        where: { titulo: { contains: titulo } }
+      });
+
       return res.json(filteredtickets);
     }
 
-    const tickets = await Ticket.read();
- 
-    return res.json(Ticket);
+    const tickets = await Ticket.findMany();
+    return res.json(tickets);
   } catch (error) {
-    throw new HttpError('Unable to read tickets');
+    return res.status(500).json({ message: 'Unable to read tickets', error: error.message });
   }
 });
 
+// Leitura de um ticket específico
 router.get('/tickets/:id', async (req, res) => {
   const { id } = req.params;
- 
+
   try {
-    const ticket = await Ticket.readById(id);
- 
-    if (ticket) {
-      return res.json(ticket);
-    } else {
-      throw new HttpError('ticket not found');
+    const ticket = await Ticket.findUnique({
+      where: { id }
+    });
+
+    if (!ticket) {
+      throw new HttpError('Ticket not found', 404);
     }
+
+    return res.json(ticket);
   } catch (error) {
-    throw new HttpError('Unable to read a ticket');
+    return res.status(500).json({ message: 'Unable to read the ticket', error: error.message });
   }
 });
 
+// Atualização de um ticket
 router.put('/tickets/:id', async (req, res) => {
   const { titulo, descricao } = req.body;
- 
-  const id = req.params.id;
- 
+  const { id } = req.params;
+
   if (!titulo || !descricao) {
-    throw new HttpError('Error when passing parameters');
+    throw new HttpError('Error when passing parameters', 400);
   }
- 
+
   try {
-    const updatedticket = await Ticket.update({ id, titulo, descricao });
- 
-    return res.json(updatedticket);
+    const updatedTicket = await Ticket.update({
+      where: { id },
+      data: { titulo, descricao }
+    });
+
+    return res.json(updatedTicket);
   } catch (error) {
-    throw new HttpError('Unable to update a ticket');
+    return res.status(500).json({ message: 'Unable to update the ticket', error: error.message });
   }
 });
 
+// Deleção de um ticket
 router.delete('/tickets/:id', async (req, res) => {
   const { id } = req.params;
- 
+
   try {
-    await tickets.remove(id);
- 
-    return res.send(204);
+    await Ticket.delete({
+      where: { id }
+    });
+
+    return res.sendStatus(204); // Retorna status 204 (No Content)
   } catch (error) {
-    throw new HttpError('Unable to delete a ticket');
+    return res.status(500).json({ message: 'Unable to delete the ticket', error: error.message });
   }
 });
 
@@ -94,17 +113,15 @@ router.delete('/tickets/:id', async (req, res) => {
 router.use((req, res, next) => {
   return res.status(404).json({ message: 'Content not found!' });
 });
- 
+
 // Error handler
 router.use((err, req, res, next) => {
-  // console.error(err.message);
   console.error(err.stack);
- 
+
   if (err instanceof HttpError) {
     return res.status(err.code).json({ message: err.message });
   }
- 
-  // next(err);
+
   return res.status(500).json({ message: 'Something broke!' });
 });
 

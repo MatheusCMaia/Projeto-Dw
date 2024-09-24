@@ -9,19 +9,21 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
- 
-model Ticket {
-  id      String @id @default(uuid())
-  titulo    String
-  descricao String
-  dataCriacao DateTime @default(())
-}
 
 model User {
-  id       String @id @default(cuid())
-  name     String
-  email    String @unique
-  password String
-  tickets    Ticket[]
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  tickets   Ticket[] // Um usuário pode ter muitos tickets
 }
- 
+
+model Ticket {
+  id           Int      @id @default(autoincrement())
+  titulo       String
+  descricao    String
+  dataCriacao  DateTime @default(now())
+  prioridade   String   @default("Em Análise")
+  status       String   @default("Pendente")
+  userId       Int      // Chave estrangeira para User
+  user         User     @relation(fields: [userId], references: [id]) // Relacionamento com o modelo User
+}
