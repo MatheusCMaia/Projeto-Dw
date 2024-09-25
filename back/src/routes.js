@@ -10,7 +10,6 @@ class HttpError extends Error {
 
 const router = express.Router();
 
-// Criação de tickets
 router.post('/tickets', async (req, res) => {
   const { titulo, descricao } = req.body;
 
@@ -19,14 +18,14 @@ router.post('/tickets', async (req, res) => {
   }
 
   try {
-    const createdTicket = await Ticket.create({
-      data: { 
+    const createdTicket = await Ticket.create({ 
         titulo, 
-        descricao, 
+        descricao,
+        user, 
         prioridade: 'Em Análise', 
         status: 'Pendente'
       }
-    });
+    );
 
     return res.status(201).json(createdTicket);
   } catch (error) {
@@ -34,27 +33,24 @@ router.post('/tickets', async (req, res) => {
   }
 });
 
-// Leitura de tickets
 router.get('/tickets', async (req, res) => {
   const { titulo } = req.query;
 
   try {
     if (titulo) {
-      const filteredtickets = await Ticket.findMany({
-        where: { titulo: { contains: titulo } }
-      });
-
+      const filteredtickets = await Ticket.read({ titulo });
+      
       return res.json(filteredtickets);
     }
 
-    const tickets = await Ticket.findMany();
+    const tickets = await Ticket.read();
+    
     return res.json(tickets);
   } catch (error) {
     return res.status(500).json({ message: 'Unable to read tickets', error: error.message });
   }
 });
 
-// Leitura de um ticket específico
 router.get('/tickets/:id', async (req, res) => {
   const { id } = req.params;
 
@@ -73,7 +69,6 @@ router.get('/tickets/:id', async (req, res) => {
   }
 });
 
-// Atualização de um ticket
 router.put('/tickets/:id', async (req, res) => {
   const { titulo, descricao } = req.body;
   const { id } = req.params;
@@ -94,7 +89,6 @@ router.put('/tickets/:id', async (req, res) => {
   }
 });
 
-// Deleção de um ticket
 router.delete('/tickets/:id', async (req, res) => {
   const { id } = req.params;
 

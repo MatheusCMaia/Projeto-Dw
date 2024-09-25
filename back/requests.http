@@ -8,8 +8,8 @@ Content-Type: application/json
 
 {
   "titulo": "Ticket pendente 1",
-  "descricao": "Descrição do problema 1"
-
+  "descricao": "Descrição do problema 1",
+  "user": "admin",
 }
 
 ### Read ticket

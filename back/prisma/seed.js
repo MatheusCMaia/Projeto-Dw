@@ -1,19 +1,22 @@
-import { resolve } from 'node:path';
-import { readFileSync } from 'node:fs';
 import { PrismaClient } from '@prisma/client';
+import Ticket from '../src/models/Ticket.js';
+import User from '../src/models/Users.js';
  
 const prisma = new PrismaClient();
  
 async function main() {
-  const file = resolve('prisma', 'seeders.json');
- 
-  const seed = JSON.parse(readFileSync(file));
- 
-  for (const ticket of seed.tickets) {
-    await prisma.ticket.create({
-      data: ticket,
-    });
-  }
+  await User.create({
+    name: 'admin',
+    email: 'admin@admin.com',
+    password: 'admin',
+  });
+
+  await Ticket.create({
+    titulo: 'Problema 1',
+    descricao: 'Descrição do problema 1',
+    status: 'Pendente',
+    
+  });
 }
 main()
   .then(async () => {
