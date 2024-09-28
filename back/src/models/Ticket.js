@@ -1,9 +1,12 @@
 import prisma from '../database/database.js';
  
-async function create({ titulo, descricao }) {
+async function create({ titulo, descricao, userId }) {
   const createdTicket = await prisma.ticket.create({
-    data: { titulo, descricao },
-  });
+    data: {
+      titulo,
+      descricao,
+      user: {
+        connect: { id: userId } }}});
  
   return createdTicket;
 }
@@ -30,8 +33,18 @@ async function readById(id) {
       id,
     },
   });
- 
+
   return ticket;
+}
+
+async function readByUserId(id) {
+  const tickets = await prisma.ticket.findMany({
+    where: {
+      userId: id
+    }
+  });
+
+  return tickets;
 }
  
 async function update({ id, titulo, descricao }) {
@@ -53,5 +66,5 @@ async function remove(id) {
   });
 }
  
-export default { create, read, readById, update, remove };
+export default { create, read, readById, readByUserId, update, remove };
  

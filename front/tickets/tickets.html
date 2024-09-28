@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplicativo</title>
+    <title>Criar Novo Ticket - App Ticket</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="/front/css/styles.css" rel="stylesheet">
 </head>
 <body>
-
-    
     <nav class="navbar navbar-expand-lg navbar-light custom-navbar fixed-top">
         <a class="navbar-brand" href="/front/index.html">App Ticket</a>
         <div class="navbar-collapse">
@@ -23,14 +21,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/front/sobre.html">Sobre</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logoutLink">Logout</a> <!-- Link para logout -->
+                </li>
             </ul>
         </div>
     </nav>
 
-    
-    <div class="container custom-container">
+    <div class="container custom-container" style="margin-top: 80px;"> <!-- Margem para evitar sobreposição -->
         <h1>Criar Novo Ticket</h1>
-        <form>
+        <form id="ticketForm"> <!-- Adicione um ID ao formulário -->
             <div class="form-group">
                 <label for="tituloTicket">Título do Ticket</label>
                 <input type="text" class="form-control" id="tituloTicket" placeholder="Digite o título do ticket" required>
@@ -43,13 +43,20 @@
         </form>
     </div>
 
-    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
     
-    <script src="ticket.js"></script>
+    <script type="module">
+        import Auth from '/front/js/services/auth.js';
+
+        // Função de logout
+        document.getElementById('logoutLink').addEventListener('click', (event) => {
+            event.preventDefault();
+            Auth.signout();  // Chama a função de logout do Auth
+        });
+    </script>
+    
+    <script type="module" src="/front/tickets/ticket.js"></script> <!-- Certifique-se de usar type="module" se você estiver usando import/export -->
 </body>
 </html>
-

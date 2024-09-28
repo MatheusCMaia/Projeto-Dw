@@ -1,21 +1,20 @@
 import { PrismaClient } from '@prisma/client';
 import Ticket from '../src/models/Ticket.js';
-import User from '../src/models/Users.js';
+import Users from '../src/models/Users.js';
  
 const prisma = new PrismaClient();
  
 async function main() {
-  await User.create({
-    name: 'admin',
+  await Users.create({
     email: 'admin@admin.com',
     password: 'admin',
+    name: "admin"
   });
 
   await Ticket.create({
     titulo: 'Problema 1',
-    descricao: 'Descrição do problema 1',
-    status: 'Pendente',
-    
+    descricao: 'Descricao do problema 1',
+    userId: 1
   });
 }
 main()

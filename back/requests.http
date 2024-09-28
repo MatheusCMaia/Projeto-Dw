@@ -1,33 +1,106 @@
 @server=http://localhost:3000
 @createdTicketId = {{createTicket.response.body.$.id}}
+@createdUserId = {{createdUser.response.body.$.id}}
+@currentUserId = {{currentUser.response.body.$.id}}
+@token = {{signin.response.body.$.token}}
+
+### Create User
+# @name createdUser
+POST {{server}}/users
+Content-Type: application/json
+ 
+{
+  "name": "admin2",
+  "email": "admin@email.com",
+  "password": "admin2"
+}
+ 
+### Create a user with same email
+POST {{server}}/users
+Content-Type: application/json
+ 
+{
+  "name": "Luiz",
+  "email": "luiz@email.com",
+  "password": "123"
+}
+ 
+### Create a user without email
+POST {{server}}/users
+Content-Type: application/json
+ 
+{
+  "name": "Luiz",
+  "email": "luiz@email.com",
+  "password": "123"
+}
+
+### Signin
+# @name signin
+POST {{server}}/signin
+Content-Type: application/json
+ 
+{
+  "email": "luiz@email.com",
+  "password": "123"
+}
+
+### Signin
+# @name signin
+POST {{server}}/signin
+Content-Type: application/json
+ 
+{
+  "email": "admin@admin.com",
+  "password": "admin"
+}
+ 
+### Read current user
+# @name currentUser
+GET {{server}}/users/me
+Authorization: bearer {{token}}
+ 
+### Signin 401
+POST {{server}}/signin
+Content-Type: application/json
+ 
+{
+  "email": "luiz@email.com",
+  "password": "321"
+}
 
 ### Create a ticket
 # @name createTicket
-POST {{server}}/tickets
+POST {{server}}/tickets/
+Authorization: bearer {{token}}
 Content-Type: application/json
 
 {
-  "titulo": "Ticket pendente 1",
-  "descricao": "Descrição do problema 1",
-  "user": "admin",
+  "titulo": "Ticket pendente",
+  "descricao": "Descrição do problema"
 }
 
-### Read ticket
-GET {{server}}/tickets
+### Read ticket by user
+GET {{server}}/user/tickets
+Authorization: bearer {{token}}
 
 ### Read a ticket by title
-GET {{server}}/tickets?titulo=Problema%202
+GET {{server}}/user/tickets?status=Pendente
+Authorization: bearer {{token}}
 # GET {{server}}/tickets?titulo=1
 # GET {{server}}/tickets?name=1
 
 ### Read a ticket by id
 GET {{server}}/tickets/{{createdTicketId}}
+Authorization: bearer {{token}}
 
 ### Read a ticket by id with invalid id
-GET {{server}}/tickets/x
+GET {{server}}/tickets/{{{createdUserId}}}
+Authorization: bearer {{token}}
 
 ### Update a ticket
 PUT {{server}}/tickets/{{createdTicketId}}
+Authorization: bearer {{token}}
 Content-Type: application/json
 
 {
@@ -37,6 +110,7 @@ Content-Type: application/json
 
 ### Update a ticket with invalid id
 PUT {{server}}/tickets/x
+Authorization: bearer {{token}}
 Content-Type: application/json
 
 {
@@ -46,6 +120,8 @@ Content-Type: application/json
 
 ### Delete a ticket
 DELETE {{server}}/tickets/{{createdTicketId}}
+Authorization: bearer {{token}}
 
 ### Delete a ticket with invalid id
 DELETE {{server}}/tickets/x
+Authorization: bearer {{token}}
